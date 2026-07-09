@@ -23,24 +23,18 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <Link
+          <a
             href="/#products"
             className="text-sm font-medium text-foreground/80 transition-colors hover:text-brand-blue"
           >
             Products
-          </Link>
-          <Link
-            href="/#categories"
-            className="text-sm font-medium text-foreground/80 transition-colors hover:text-brand-blue"
-          >
-            Categories
-          </Link>
-          <Link
+          </a>
+          <a
             href="/#contact"
             className="text-sm font-medium text-foreground/80 transition-colors hover:text-brand-blue"
           >
             Contact
-          </Link>
+          </a>
         </nav>
 
         <div className="flex items-center gap-2">

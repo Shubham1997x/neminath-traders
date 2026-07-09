@@ -26,6 +26,9 @@ export function Footer() {
                 className="h-9 w-auto"
               />
             </div>
+            <h2 className="mt-4 font-heading text-xl font-bold tracking-tight text-white">
+              {COMPANY.name}
+            </h2>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               A trusted B2B supplier of pump spares, pressure tanks and terminal
               boards — built for reliability, sourced for availability.
@@ -38,42 +41,20 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <Link href="/#products" className="text-white/75 hover:text-brand-orange">
+                <a href="/#products" className="text-white/75 hover:text-brand-orange">
                   Products
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/#categories" className="text-white/75 hover:text-brand-orange">
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="/#contact" className="text-white/75 hover:text-brand-orange">
+                <a href="/#contact" className="text-white/75 hover:text-brand-orange">
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="spec-chip text-xs font-semibold uppercase tracking-wider text-white/50">
-              Categories
-            </h3>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {categories.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/?category=${c.slug}#products`}
-                    className="text-white/75 hover:text-brand-orange"
-                  >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          <div>
             <h3 className="spec-chip text-xs font-semibold uppercase tracking-wider text-white/50">
               Contact
             </h3>
