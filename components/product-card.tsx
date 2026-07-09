@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Send } from "lucide-react";
+import { Send } from "lucide-react";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EnquiryDialog } from "@/components/enquiry-dialog";
@@ -71,7 +72,7 @@ export function ProductCard({ product, query }: { product: Product; query?: stri
             variant="outline"
             className="flex-1 border-[#25D366]/40 text-[#128C4A] hover:bg-[#25D366]/10"
           >
-            <MessageCircle className="h-3.5 w-3.5" />
+            <WhatsAppIcon className="h-3.5 w-3.5" />
             WhatsApp
           </Button>
         </div>

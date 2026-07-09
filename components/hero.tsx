@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { useGsapContext } from "@/hooks/use-gsap";
 import { whatsappLink } from "@/lib/catalog-config";
@@ -78,7 +79,7 @@ export function Hero() {
               variant="outline"
               className="border-white/30 bg-transparent text-white hover:bg-white/10"
             >
-              <MessageCircle className="h-4 w-4" />
+              <WhatsAppIcon className="h-4 w-4" />
               WhatsApp Enquiry
             </Button>
           </div>

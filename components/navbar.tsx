@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { COMPANY, callLink, whatsappLink } from "@/lib/catalog-config";
 
@@ -65,7 +66,7 @@ export function Navbar() {
             size="sm"
             className="bg-[#25D366] text-white hover:bg-[#1fb855]"
           >
-            <MessageCircle className="h-3.5 w-3.5" />
+            <WhatsAppIcon className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">WhatsApp</span>
           </Button>
         </div>

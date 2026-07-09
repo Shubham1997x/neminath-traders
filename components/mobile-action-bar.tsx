@@ -1,6 +1,7 @@
 "use client";
 
-import { Phone, MessageCircle, FileText } from "lucide-react";
+import { Phone, FileText } from "lucide-react";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { COMPANY, callLink, whatsappLink } from "@/lib/catalog-config";
 import { EnquiryDialog } from "@/components/enquiry-dialog";
 
@@ -20,7 +21,7 @@ export function MobileActionBar() {
         rel="noopener noreferrer"
         className="flex flex-1 flex-col items-center gap-0.5 border-x border-border py-2.5 text-[#25D366] active:bg-muted"
       >
-        <MessageCircle className="h-4.5 w-4.5" />
+        <WhatsAppIcon className="h-4.5 w-4.5" />
         <span className="text-[11px] font-medium">WhatsApp</span>
       </a>
       <EnquiryDialog

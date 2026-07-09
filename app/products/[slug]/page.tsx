@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MessageCircle, Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2 } from "lucide-react";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Breadcrumb } from "@/components/breadcrumb";
@@ -158,7 +159,7 @@ export default async function ProductPage({
                   variant="outline"
                   className="w-full border-[#25D366]/40 text-[#128C4A] hover:bg-[#25D366]/10"
                 >
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppIcon className="h-4 w-4" />
                   WhatsApp Enquiry
                 </Button>
               </div>
