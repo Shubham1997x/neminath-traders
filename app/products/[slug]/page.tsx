@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { ProductCard } from "@/components/product-card";
 import { EnquiryDialog } from "@/components/enquiry-dialog";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getAllProducts, getProductBySlug, getRelatedProducts } from "@/lib/products";
@@ -142,6 +143,12 @@ export default async function ProductPage({
                 Send an enquiry or message us directly on WhatsApp for price and availability.
               </p>
               <div className="mt-5 flex flex-col gap-2.5">
+                <AddToCartButton
+                  product={product}
+                  variant="default"
+                  size="default"
+                  className="w-full bg-brand-orange text-white hover:bg-brand-orange/90"
+                />
                 <EnquiryDialog
                   productName={product.name}
                   trigger={

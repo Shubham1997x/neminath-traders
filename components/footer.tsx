@@ -4,10 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { COMPANY, CATEGORY_META, callLink } from "@/lib/catalog-config";
+import { COMPANY, callLink } from "@/lib/catalog-config";
 
 export function Footer() {
-  const categories = Object.values(CATEGORY_META);
 
   return (
     <footer
@@ -41,14 +40,14 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <a href="/#products" className="text-white/75 hover:text-brand-orange">
+                <Link href="/#products" className="text-white/75 hover:text-brand-orange">
                   Products
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#contact" className="text-white/75 hover:text-brand-orange">
+                <Link href="/#contact" className="text-white/75 hover:text-brand-orange">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

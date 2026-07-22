@@ -18,11 +18,13 @@ export function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function useGsapContext(
+export function useGsapContext<T extends HTMLElement = HTMLDivElement>(
   callback: () => void,
-  deps: React.DependencyList = []
+  deps: React.DependencyList = [],
+  externalRef?: React.RefObject<T | null>
 ) {
-  const scopeRef = useRef<HTMLDivElement | null>(null);
+  const internalRef = useRef<T | null>(null);
+  const scopeRef = externalRef || internalRef;
 
   useEffect(() => {
     ensureGsapRegistered();

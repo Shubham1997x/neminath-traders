@@ -9,6 +9,7 @@ type EnquiryPayload = {
   requirement?: string;
   message?: string;
   productName: string;
+  items?: { name: string; qty: number }[];
 };
 
 export async function POST(request: Request) {

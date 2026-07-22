@@ -7,6 +7,7 @@ import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EnquiryDialog } from "@/components/enquiry-dialog";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { highlightMatch } from "@/components/search-bar";
 import type { Product } from "@/lib/products";
 import { whatsappLink } from "@/lib/catalog-config";
@@ -48,33 +49,36 @@ export function ProductCard({ product, query }: { product: Product; query?: stri
           {product.description}
         </p>
 
-        <div className="mt-auto flex gap-2 pt-3">
-          <EnquiryDialog
-            productName={product.name}
-            trigger={
-              <Button size="sm" className="flex-1 bg-navy hover:bg-navy/90">
-                <Send className="h-3.5 w-3.5" />
-                Send Enquiry
-              </Button>
-            }
-          />
-          <Button
-            render={
-              <a
-                href={whatsappLink(product.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-              />
-            }
-            nativeButton={false}
-            size="sm"
-            variant="outline"
-            className="flex-1 border-[#25D366]/40 text-[#128C4A] hover:bg-[#25D366]/10"
-          >
-            <WhatsAppIcon className="h-3.5 w-3.5" />
-            WhatsApp
-          </Button>
+        <div className="mt-auto flex flex-col gap-2 pt-3">
+          <AddToCartButton product={product} />
+          <div className="flex gap-2">
+            <EnquiryDialog
+              productName={product.name}
+              trigger={
+                <Button size="sm" className="flex-1 bg-navy hover:bg-navy/90">
+                  <Send className="h-3.5 w-3.5" />
+                  Send Enquiry
+                </Button>
+              }
+            />
+            <Button
+              render={
+                <a
+                  href={whatsappLink(product.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              }
+              nativeButton={false}
+              size="sm"
+              variant="outline"
+              className="flex-1 border-[#25D366]/40 text-[#128C4A] hover:bg-[#25D366]/10"
+            >
+              <WhatsAppIcon className="h-3.5 w-3.5" />
+              WhatsApp
+            </Button>
+          </div>
         </div>
       </div>
     </div>

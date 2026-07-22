@@ -6,10 +6,12 @@ import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
 import { useGsapContext } from "@/hooks/use-gsap";
 import { whatsappLink } from "@/lib/catalog-config";
+import { useRef } from "react";
 import gsap from "gsap";
 
 export function Hero() {
-  const scopeRef = useGsapContext(() => {
+  const scopeRef = useRef<HTMLElement | null>(null);
+  useGsapContext(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     tl.from(".hero-eyebrow", { opacity: 0, y: 16, duration: 0.5 })
       .from(".hero-heading", { opacity: 0, y: 24, duration: 0.7 }, "-=0.3")
@@ -26,7 +28,7 @@ export function Hero() {
         scrub: true,
       },
     });
-  }, []);
+  }, [], scopeRef);
 
   return (
     <section ref={scopeRef} className="relative overflow-hidden bg-navy">

@@ -42,12 +42,20 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function EnquiryDialog({
   productName,
+  items,
   trigger,
+  open: openProp,
+  onOpenChange,
 }: {
   productName: string;
-  trigger: ReactNode;
+  items?: { name: string; qty: number }[];
+  trigger?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [openState, setOpenState] = useState(false);
+  const open = openProp ?? openState;
+  const setOpen = onOpenChange ?? setOpenState;
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -76,7 +84,7 @@ export function EnquiryDialog({
       const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, productName }),
+        body: JSON.stringify({ ...form, productName, items }),
       });
       if (!res.ok) throw new Error("Request failed");
 
@@ -97,7 +105,7 @@ export function EnquiryDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={trigger as React.ReactElement} />
+      {trigger && <DialogTrigger render={trigger as React.ReactElement} />}
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="font-heading">Send Enquiry</DialogTitle>
@@ -107,10 +115,24 @@ export function EnquiryDialog({
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="grid gap-4">
-          <div className="grid gap-1.5">
-            <Label htmlFor="productName">Product</Label>
-            <Input id="productName" value={productName} readOnly className="bg-muted" />
-          </div>
+          {items && items.length > 0 ? (
+            <div className="grid gap-1.5">
+              <Label>Products ({items.length})</Label>
+              <ul className="max-h-32 divide-y divide-border overflow-y-auto rounded-md border border-border bg-muted/50 text-sm">
+                {items.map((item) => (
+                  <li key={item.name} className="flex items-center justify-between px-3 py-1.5">
+                    <span className="truncate">{item.name}</span>
+                    <span className="ml-2 shrink-0 text-xs text-muted-foreground">×{item.qty}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div className="grid gap-1.5">
+              <Label htmlFor="productName">Product</Label>
+              <Input id="productName" value={productName} readOnly className="bg-muted" />
+            </div>
+          )}
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="grid gap-1.5">

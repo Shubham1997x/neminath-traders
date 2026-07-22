@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { MobileActionBar } from "@/components/mobile-action-bar";
+import { CartProvider } from "@/lib/cart-context";
 import { COMPANY } from "@/lib/catalog-config";
 
 const inter = Inter({
@@ -55,9 +56,11 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
-        <FloatingWhatsApp />
-        <MobileActionBar />
+        <CartProvider>
+          {children}
+          <FloatingWhatsApp />
+          <MobileActionBar />
+        </CartProvider>
         <Toaster />
       </body>
     </html>

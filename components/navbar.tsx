@@ -1,13 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone } from "lucide-react";
+import { Phone, ShoppingCart } from "lucide-react";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { Button } from "@/components/ui/button";
+import { CartDialog } from "@/components/cart-dialog";
+import { useCart } from "@/lib/cart-context";
 import { COMPANY, callLink, whatsappLink } from "@/lib/catalog-config";
 
 export function Navbar() {
+  const { itemCount } = useCart();
+  const [cartOpen, setCartOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
@@ -23,21 +29,36 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          <a
+          <Link
             href="/#products"
             className="text-sm font-medium text-foreground/80 transition-colors hover:text-brand-blue"
           >
             Products
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#contact"
             className="text-sm font-medium text-foreground/80 transition-colors hover:text-brand-blue"
           >
             Contact
-          </a>
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="relative border-navy/20 text-navy hover:bg-navy hover:text-primary-foreground"
+            onClick={() => setCartOpen(true)}
+            aria-label="Open cart"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            {itemCount > 0 && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-brand-orange px-1 text-[10px] font-bold text-white">
+                {itemCount}
+              </span>
+            )}
+          </Button>
           <Button
             render={<a href={callLink(COMPANY.phonesRaw[0])} />}
             nativeButton={false}
@@ -65,6 +86,7 @@ export function Navbar() {
           </Button>
         </div>
       </div>
+      <CartDialog open={cartOpen} onOpenChange={setCartOpen} />
     </header>
   );
 }

@@ -63,6 +63,15 @@ export function whatsappLink(productName: string, phone = COMPANY.whatsappNumber
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
+export function whatsappCartLink(
+  items: { name: string; qty: number }[],
+  phone = COMPANY.whatsappNumber
+) {
+  const list = items.map((i) => `- ${i.name} (Qty: ${i.qty})`).join("\n");
+  const message = `Hello Neminath Traders,\n\nI am interested in the following products:\n\n${list}\n\nPlease share price and availability.`;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
 export function callLink(phoneRaw: string) {
   return `tel:${phoneRaw}`;
 }
